@@ -2,11 +2,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { useId } from "react";
 import * as Yup from "yup";
-import { addContact } from "../../redux/contactsOps";
+import { apiAddNewUserContact } from "../../redux/contacts/operations";
 import css from "./ContactForm.module.css";
 
 const FeedbackSchema = Yup.object().shape({
-  username: Yup.string()
+  name: Yup.string()
     .min(3, "Too Short!")
     .max(50, "Too Long!")
     .required("Name is required"),
@@ -17,7 +17,7 @@ const FeedbackSchema = Yup.object().shape({
 });
 
 const initialValues = {
-  username: "",
+  name: "",
   number: "",
 };
 
@@ -35,7 +35,7 @@ const ContactForm = () => {
   const numberId = useId();
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
+    dispatch(apiAddNewUserContact(values));
     actions.resetForm();
   };
 
@@ -52,7 +52,7 @@ const ContactForm = () => {
           <Field
             className={css.contactInput}
             type="text"
-            name="username"
+            name="name"
             id={usernameId}
             placeholder="Enter name"
             list="usernameList"
@@ -66,7 +66,7 @@ const ContactForm = () => {
           </datalist>
 
           <ErrorMessage
-            name="username"
+            name="name"
             component="span"
             className={css.contactError}
           ></ErrorMessage>
@@ -88,7 +88,7 @@ const ContactForm = () => {
           <datalist id="numberList">
             {contacts.map(({ number }, index) => (
               <option key={index} value={number} />
-            ))}{" "}
+            ))}
           </datalist>
 
           <ErrorMessage
