@@ -53,7 +53,7 @@ export const requestDeleteContact = async (contactId) => {
     return data;
 }
 export const requestUpdateContact = async (contact) => {
-    console.log(contact);
+    
     const { data } = await instance.patch(`/contacts/${contact.id}`, {name: contact.name,number: contact.number});
     return data;
 }

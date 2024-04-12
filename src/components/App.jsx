@@ -1,7 +1,7 @@
 import "./App.css";
 
 import { Navigate, Route, Routes } from "react-router-dom";
-
+import { Toaster } from "react-hot-toast";
 import { lazy } from "react";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -24,6 +24,7 @@ function App() {
   }, [dispatch]);
   return (
     <>
+      <Toaster />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />

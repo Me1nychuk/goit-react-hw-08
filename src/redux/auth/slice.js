@@ -1,5 +1,6 @@
 import { createSlice , isAnyOf } from '@reduxjs/toolkit';
-import { apiRegisterUser,apiLoginUser,apiRefreshUser,apiLogoutUser } from './operations';
+import { apiRegisterUser, apiLoginUser, apiRefreshUser, apiLogoutUser } from './operations';
+import { toast } from 'react-hot-toast';
 
 
 
@@ -22,14 +23,16 @@ const authSlice = createSlice({
             state.isLoading = false;
             state.user = action.payload.user;
             state.token = action.payload.token;
-            state.isSignedIn = true;
+         state.isSignedIn = true;
+         toast.success('You have registered✅');
      })
      
     .addCase(apiLoginUser.fulfilled, (state, action) => {
             state.isLoading = false;
             state.user = action.payload.user;
             state.token = action.payload.token;
-            state.isSignedIn = true;
+        state.isSignedIn = true;
+         toast.success('You are logged in✅');
      })
 
         .addCase(apiRefreshUser.pending , (state) =>{
@@ -40,6 +43,7 @@ const authSlice = createSlice({
             state.isRefreshing = false;
             state.user = action.payload;
             state.isSignedIn = true;
+            
      })
      .addCase(apiRefreshUser.rejected, (state) => {
             state.isRefreshing = false;
@@ -54,10 +58,13 @@ const authSlice = createSlice({
     .addMatcher(isAnyOf(apiRegisterUser.pending, apiLoginUser.pending, apiLogoutUser.pending), (state) => {
         state.isLoading = true;
         state.isError = false;
+        
+         
     })
     .addMatcher(isAnyOf(apiRegisterUser.rejected, apiLoginUser.rejected, apiLogoutUser.rejected), (state) => {
         state.isLoading = false;
-            state.isError = true;
+        state.isError = true;
+        toast.error('Oops! Something went wrong ❌');
     }),
     
 });
