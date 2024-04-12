@@ -4,7 +4,7 @@ import { apiRegisterUser,apiLoginUser,apiRefreshUser,apiLogoutUser } from './ope
 
 
 const INITIAL_STATE = {
-    userData: null,
+    user: null,
     token: null,
     isSignedIn: false,
     isRefreshing: false,
@@ -20,14 +20,14 @@ const authSlice = createSlice({
         builder
      .addCase(apiRegisterUser.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.userData = action.payload.user;
+            state.user = action.payload.user;
             state.token = action.payload.token;
             state.isSignedIn = true;
      })
      
     .addCase(apiLoginUser.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.userData = action.payload.user;
+            state.user = action.payload.user;
             state.token = action.payload.token;
             state.isSignedIn = true;
      })
@@ -38,7 +38,7 @@ const authSlice = createSlice({
         })
         .addCase(apiRefreshUser.fulfilled, (state, action) => {
             state.isRefreshing = false;
-            state.userData = action.payload;
+            state.user = action.payload;
             state.isSignedIn = true;
      })
      .addCase(apiRefreshUser.rejected, (state) => {

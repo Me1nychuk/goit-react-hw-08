@@ -39,6 +39,7 @@ export const apiDeleteUserContact = createAsyncThunk("phonebook/deleteContact",
 export const apiUpdateUserContact = createAsyncThunk("phonebook/deleteContact",
     async (contact, thunkAPI) => {
         try {
+            console.log(contact);console.log("thunk");
             const data = await requestUpdateContact(contact) ;
             return data;
         } catch (error) {

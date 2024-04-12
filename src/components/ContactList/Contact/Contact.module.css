@@ -7,13 +7,31 @@
   border-radius: 15px;
   transition: border-color 0.3s;
   flex-basis: 300px;
+  transition: transform 0.3s ease-in-out 0.1s;
 }
 .mainWrapper:hover {
   border-color: #646cff;
+  transform: scale(1.2);
 }
 .textWrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  gap: 10px;
+}
+.textInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  padding: 5px 10px;
+}
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
 }

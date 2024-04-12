@@ -4,12 +4,12 @@ import AppBar from "./AppBar/AppBar";
 
 const Layout = () => {
   return (
-    <div>
+    <>
       <AppBar />
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-    </div>
+    </>
   );
 };
 

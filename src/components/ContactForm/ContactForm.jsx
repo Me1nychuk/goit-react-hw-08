@@ -12,7 +12,7 @@ const FeedbackSchema = Yup.object().shape({
     .required("Name is required"),
   number: Yup.string()
     .min(3, "Too Short!")
-    .max(50, "Too Long!")
+    .max(15, "Too Long!")
     .required("Number is required"),
 });
 
@@ -31,7 +31,7 @@ const contacts = [
 const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const usernameId = useId();
+  const nameId = useId();
   const numberId = useId();
 
   const handleSubmit = (values, actions) => {
@@ -47,13 +47,13 @@ const ContactForm = () => {
     >
       <Form className={css.form}>
         <div className={css.inputWrapper}>
-          <label htmlFor={usernameId}>Name</label>
+          <label htmlFor={nameId}>Name</label>
 
           <Field
             className={css.contactInput}
             type="text"
             name="name"
-            id={usernameId}
+            id={nameId}
             placeholder="Enter name"
             list="usernameList"
             autoComplete="off"
