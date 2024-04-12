@@ -2,7 +2,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 import { useDispatch } from "react-redux";
-import { apiUpdateUserContact } from "../../redux/contacts/operations";
+import {
+  apiUpdateUserContact,
+  apiGetUserContacts,
+} from "../../redux/contacts/operations";
 
 import PropTypes from "prop-types";
 
@@ -29,6 +32,7 @@ const Modal = ({ contact, onClick }) => {
     const name = values.name.trim() != "" ? values.name : contact.name;
     const number = values.number.trim() != "" ? values.number : contact.number;
     dispatch(apiUpdateUserContact({ id: contact.id, name, number }));
+    dispatch(apiGetUserContacts());
     actions.resetForm();
   };
   return (
